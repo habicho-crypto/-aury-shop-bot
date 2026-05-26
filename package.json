@@ -1,0 +1,12 @@
+{
+  "name": "aury-shop-bot",
+  "version": "1.0.0",
+  "description": "Asistente de atención al cliente para Aury Shop",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
