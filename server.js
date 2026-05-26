@@ -32,7 +32,7 @@ PAGOS: Tarjeta, transferencia, OXXO, meses sin intereses.
 COMPATIBILIDAD: Power Bank compatible con iPhone y Android. Audífonos Bluetooth 5.3 con cualquier smartphone.
 `;
 
-const SYSTEM = `Eres el asistente de atención al cliente de Aury Shop, tienda en Mercado Libre México. 
+const SYSTEM = `Eres el asistente de atención al cliente de Aury Shop, tienda en Mercado Libre México.
 Tu trabajo es responder preguntas de clientes de forma NATURAL, AMABLE y CONVERSACIONAL.
 
 REGLAS:
@@ -48,22 +48,23 @@ REGLAS:
 CATÁLOGO:
 ${CATALOG}`;
 
-function callClaude(messages, callback) {
+function callGroq(messages, callback) {
   const body = JSON.stringify({
-    model: 'claude-haiku-4-5-20251001',
+    model: 'llama-3.1-8b-instant',
     max_tokens: 300,
-    system: SYSTEM,
-    messages: messages
+    messages: [
+      { role: 'system', content: SYSTEM },
+      ...messages
+    ]
   });
 
   const options = {
-    hostname: 'api.anthropic.com',
-    path: '/v1/messages',
+    hostname: 'api.groq.com',
+    path: '/openai/v1/chat/completions',
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'x-api-key': process.env.ANTHROPIC_API_KEY,
-      'anthropic-version': '2023-06-01',
+      'Authorization': `Bearer ${process.env.GROQ_API_KEY}`,
       'Content-Length': Buffer.byteLength(body)
     }
   };
@@ -74,7 +75,7 @@ function callClaude(messages, callback) {
     res.on('end', () => {
       try {
         const parsed = JSON.parse(data);
-        const text = parsed.content?.find(b => b.type === 'text')?.text || 'Lo siento, intenta de nuevo.';
+        const text = parsed.choices?.[0]?.message?.content || 'Lo siento, intenta de nuevo.';
         callback(null, text);
       } catch(e) {
         callback(e);
@@ -88,7 +89,6 @@ function callClaude(messages, callback) {
 }
 
 const server = http.createServer((req, res) => {
-  // CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -105,7 +105,7 @@ const server = http.createServer((req, res) => {
     req.on('end', () => {
       try {
         const { messages } = JSON.parse(body);
-        callClaude(messages, (err, reply) => {
+        callGroq(messages, (err, reply) => {
           if (err) {
             res.writeHead(500, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ error: err.message }));
@@ -124,7 +124,7 @@ const server = http.createServer((req, res) => {
 
   if (req.method === 'GET' && req.url === '/') {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Aury Shop Bot API — OK');
+    res.end('Aury Shop Bot API con Groq — OK');
     return;
   }
 
