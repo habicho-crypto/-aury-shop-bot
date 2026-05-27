@@ -1,5 +1,7 @@
 const http = require('http');
 const https = require('https');
+const fs = require('fs');
+const path = require('path');
 
 const CATALOG = `
 Tienda: Aury Shop | Mercado Libre México | auryshopmx@gmail.com
@@ -42,11 +44,34 @@ REGLAS:
 - Si no sabes algo, di "Te confirmo ese dato y te aviso 😊"
 - Nunca inventes información que no esté en el catálogo
 - Responde siempre en español
-- Si preguntan por varios productos, menciónalos todos con sus precios
 - Sé orgánico: varía tus respuestas, no las repitas igual
 
 CATÁLOGO:
 ${CATALOG}`;
+
+const MIME_TYPES = {
+  '.html': 'text/html; charset=utf-8',
+  '.js': 'application/javascript',
+  '.css': 'text/css',
+  '.json': 'application/json',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.ico': 'image/x-icon'
+};
+
+function serveFile(res, filePath) {
+  const ext = path.extname(filePath);
+  const mime = MIME_TYPES[ext] || 'text/plain';
+  fs.readFile(filePath, (err, data) => {
+    if (err) {
+      res.writeHead(404);
+      res.end('Not found');
+      return;
+    }
+    res.writeHead(200, { 'Content-Type': mime });
+    res.end(data);
+  });
+}
 
 function callGroq(messages, callback) {
   const body = JSON.stringify({
@@ -90,7 +115,7 @@ function callGroq(messages, callback) {
 
 const server = http.createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') {
@@ -99,6 +124,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // API de chat
   if (req.method === 'POST' && req.url === '/chat') {
     let body = '';
     req.on('data', chunk => body += chunk);
@@ -122,14 +148,9 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  if (req.method === 'GET' && req.url === '/') {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Aury Shop Bot API con Groq — OK');
-    return;
-  }
-
-  res.writeHead(404);
-  res.end('Not found');
+  // Servir archivos estáticos
+  let filePath = path.join(__dirname, req.url === '/' ? 'index.html' : req.url);
+  serveFile(res, filePath);
 });
 
 const PORT = process.env.PORT || 3000;
