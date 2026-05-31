@@ -1,15 +1,11 @@
-const http = require('http');
-const https = require('https');
-const fs = require('fs');
-const path = require('path');
-
 const CATALOG = `
 Tienda: Aury Shop | Mercado Libre México | auryshopmx@gmail.com
 
 PRODUCTOS ACTIVOS:
+
 1. Kit Mundialista 3 en 1 — $859 público / $749 mayorista 2+ unidades
    Incluye: Selfie Stick Básico + Audífonos Future Pod ANC + Power Bank Slim01
-   Ideal para: Hot Sale mayo, Buen Fin noviembre, Navidad, San Valentín
+   Ideal para: Hot Sale, Buen Fin, Navidad, San Valentín
 
 2. Power Bank G-Tide Slim01 5000mAh — $429 público
    Colores: Azul, Lila y Negro | Stock: ~5 unidades individuales
@@ -17,141 +13,32 @@ PRODUCTOS ACTIVOS:
    Mayorista: 2+ pzas $399 c/u | 4+ pzas $349 c/u
 
 3. Audífonos G-Tide Future Pod ANC — $449 público
-   Colores: Blanco, Negro y Lila | Stock: 5 unidades individuales
+   Colores: Blanco y Negro | Stock: disponible
    Características: True Wireless, ANC, pantalla táctil LCD, Bluetooth 5.3
-   Mayorista: 2+ pzas $399 c/u | Publicación Premium ML
+   Mayorista: 2+ pzas $399 c/u
 
 4. Selfie Stick Pro JC-35 — $259 público
    Stock: 3 unidades | Bluetooth, extensible, trípode integrado
    Nota: Selfie Stick Básico SOLO en Kit Mundialista, no venta individual
 
+5. Speaker Bluetooth G-Tide SV30 5W — $429 público
+   Colores: Negro x1 (Gris agotado)
+   Características: Bluetooth 5.4, IPX6 resistente al agua, batería 5 horas, USB-C, TWS, micrófono integrado
+
+6. Speaker Bluetooth G-Tide SV01 5W — $329 público
+   Color: Azul x1
+   Características: Bluetooth 5.4, IPX6, soporte bicicleta/moto incluido, batería 4 horas, USB-C, TWS
+
+7. Set 4 Monedas Conmemorativas Copa Mundial FIFA 2026 Banxico — $1,199
+   Colores: N/A | Stock: 2 sets completos
+   Características: Monedas oficiales Banco de México, bimetálicas, dodecagonales 30mm, sin circular
+   Diseños: CDMX, Guadalajara, Monterrey y México (jaguar/mariposa monarca)
+   Edición limitada, difícil de conseguir, curso legal en México
+
 PRÓXIMAMENTE: Proyector PJ50 — $2,799
 
-ENVÍOS: Incluidos vía Mercado Envíos. Tiempos según ubicación.
+ENVÍOS: Incluidos vía Mercado Envíos.
 GARANTÍA: Respaldada por políticas de Mercado Libre.
 DEVOLUCIONES: Según política ML vigente.
 PAGOS: Tarjeta, transferencia, OXXO, meses sin intereses.
-COMPATIBILIDAD: Power Bank compatible con iPhone y Android. Audífonos Bluetooth 5.3 con cualquier smartphone.
 `;
-
-const SYSTEM = `Eres el asistente de atención al cliente de Aury Shop, tienda en Mercado Libre México.
-Tu trabajo es responder preguntas de clientes de forma NATURAL, AMABLE y CONVERSACIONAL.
-
-REGLAS:
-- Responde como lo haría una vendedora amable y experta, no como un robot
-- Máximo 4 líneas, directo al punto
-- Usa 1-2 emojis máximo, solo cuando aporten
-- Si no sabes algo, di "Te confirmo ese dato y te aviso 😊"
-- Nunca inventes información que no esté en el catálogo
-- Responde siempre en español
-- Sé orgánico: varía tus respuestas, no las repitas igual
-
-CATÁLOGO:
-${CATALOG}`;
-
-const MIME_TYPES = {
-  '.html': 'text/html; charset=utf-8',
-  '.js': 'application/javascript',
-  '.css': 'text/css',
-  '.json': 'application/json',
-  '.png': 'image/png',
-  '.jpg': 'image/jpeg',
-  '.ico': 'image/x-icon'
-};
-
-function serveFile(res, filePath) {
-  const ext = path.extname(filePath);
-  const mime = MIME_TYPES[ext] || 'text/plain';
-  fs.readFile(filePath, (err, data) => {
-    if (err) {
-      res.writeHead(404);
-      res.end('Not found');
-      return;
-    }
-    res.writeHead(200, { 'Content-Type': mime });
-    res.end(data);
-  });
-}
-
-function callGroq(messages, callback) {
-  const body = JSON.stringify({
-    model: 'llama-3.1-8b-instant',
-    max_tokens: 300,
-    messages: [
-      { role: 'system', content: SYSTEM },
-      ...messages
-    ]
-  });
-
-  const options = {
-    hostname: 'api.groq.com',
-    path: '/openai/v1/chat/completions',
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${process.env.GROQ_API_KEY}`,
-      'Content-Length': Buffer.byteLength(body)
-    }
-  };
-
-  const req = https.request(options, (res) => {
-    let data = '';
-    res.on('data', chunk => data += chunk);
-    res.on('end', () => {
-      try {
-        const parsed = JSON.parse(data);
-        const text = parsed.choices?.[0]?.message?.content || 'Lo siento, intenta de nuevo.';
-        callback(null, text);
-      } catch(e) {
-        callback(e);
-      }
-    });
-  });
-
-  req.on('error', callback);
-  req.write(body);
-  req.end();
-}
-
-const server = http.createServer((req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-  if (req.method === 'OPTIONS') {
-    res.writeHead(200);
-    res.end();
-    return;
-  }
-
-  // API de chat
-  if (req.method === 'POST' && req.url === '/chat') {
-    let body = '';
-    req.on('data', chunk => body += chunk);
-    req.on('end', () => {
-      try {
-        const { messages } = JSON.parse(body);
-        callGroq(messages, (err, reply) => {
-          if (err) {
-            res.writeHead(500, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ error: err.message }));
-            return;
-          }
-          res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ reply }));
-        });
-      } catch(e) {
-        res.writeHead(400, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ error: 'Invalid request' }));
-      }
-    });
-    return;
-  }
-
-  // Servir archivos estáticos
-  let filePath = path.join(__dirname, req.url === '/' ? 'index.html' : req.url);
-  serveFile(res, filePath);
-});
-
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => console.log(`Aury Shop Bot corriendo en puerto ${PORT}`));
