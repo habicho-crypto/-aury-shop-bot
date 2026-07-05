@@ -33,8 +33,8 @@ PRODUCTOS ACTIVOS:
    Caracteristicas: Over-ear, ANC, Bluetooth
    Mayorista: 1 nivel de precio disponible
 
-7. Audifonos Diadema Bluetooth - $599 (promo $329.45) | Stock: 4
-   Otro modelo de diadema Bluetooth, consultar disponibilidad de color
+7. Audifonos G-Tide C1 Lite (publicacion "Audifonos Diadema Bluetooth") - $599 (promo $329.45) | Stock: 4
+   Mismo modelo que el C1 Lite, publicado con otro titulo/foto en esta ficha
 
 8. Speaker Bluetooth G-Tide SV30 5W - $369 (promo $350.55) | Stock: 4
    Caracteristicas: Bluetooth 5.4, IPX6 resistente al agua, bateria 5 horas, USB-C, TWS, microfono integrado
@@ -107,9 +107,10 @@ const COSTOS = `
 2. Power Bank G-Tide Slim01 / Magnetico: $185
 3. Audifonos G-Tide Future Pod (Negro/Blanco): $195
 4. Audifonos G-Tide C1: $185
+4b. Audifonos G-Tide C1 Lite (Negro/Azul): $129
 5. Audifonos G-Tide HiBeat: $309
 6. Audifonos G-Tide Future Loop: $389
-7. Audifonos Diadema Bluetooth (modelo generico): publicacion en modalidad de competencia/catalogo ML, no tiene costo individual propio registrado - confirmar con Habib si aplica
+7. Audifonos Diadema Bluetooth (publicacion #5586490726): es el mismo producto que el C1 Lite, costo $129
 8. Speaker G-Tide SV30: $179
 9. Speaker G-Tide SV01: $122
 10. Bocina G-Tide SV80: $749
