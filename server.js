@@ -181,7 +181,7 @@ function serveFile(res, filePath) {
 
 function callGroq(systemPrompt, messages, callback) {
   const body = JSON.stringify({
-    model: 'llama-3.1-8b-instant',
+    model: 'openai/gpt-oss-20b',
     max_tokens: 300,
     messages: [
       { role: 'system', content: systemPrompt },
