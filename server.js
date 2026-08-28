@@ -18,7 +18,7 @@ PRODUCTOS ACTIVOS:
    Caracteristicas: 5000mAh, magnetico, carga rapida 20W, diseno slim
    Mayorista: 2 niveles de precio disponibles
 
-3. Audifonos G-Tide Future Pod ANC - $349 | Stock: ~16 (Negro y Blanco)
+3. Audifonos G-Tide Future Pod ANC - $348-369 | Stock: ~16 (Negro, Blanco y Violeta $369)
    Caracteristicas: True Wireless, ANC, pantalla tactil LCD, Bluetooth 5.3
    Mayorista: 5 niveles de precio disponibles
 
@@ -89,7 +89,21 @@ PRODUCTOS ACTIVOS:
 22. Playera Cristiana Para Hombre "Jesus..." - $349 (promo $331.55) | Stock: 10,000
     Mayorista: 3 niveles de precio disponibles
 
-PROXIMAMENTE: Proyector PJ50 - $2,799
+23. Miniproyector G-Tide PJ50 Android 11 4K WiFi6 Bluetooth - $2,999 (promo $2,514) | Stock: consultar | Colores: Blanco y Negro
+    Caracteristicas: Proyector portatil, Android 11, resolucion 4K, WiFi6, Bluetooth
+
+    24. Bocina G-Tide SV41 Hi-Fi - $999 (promo $849.15) | Stock: consultar | Color: Verde
+        Caracteristicas: Sonido Hi-Fi, luces LED, IPX6 resistente al agua, Bluetooth
+            Mayorista: 1 nivel de precio disponible
+
+            25. Audifonos G-Tide Future Clip True Wireless - $349 (promo $308.43) | Stock: consultar | Color: Negro
+                Caracteristicas: True Wireless tipo clip/gancho, Bluetooth
+                    Mayorista: 1 nivel de precio disponible
+
+                    26. Cable G-Tide Tipo C a C Carga Rapida 60W 3m - $220 (promo $202.73) | Stock: consultar | Color: Blanco
+
+                    27. Audifonos G-Tide OWS8 - $369 | SIN STOCK actualmente (pendiente de reabastecer)
+                        Color: Negro
 
 ENVIOS: Incluidos via Mercado Envios (envio gratis en la mayoria de publicaciones).
 GARANTIA: Respaldada por politicas de Mercado Libre.
@@ -123,6 +137,11 @@ const COSTOS = `
 17. Palo Selfie Stick Bluetooth con Control Remoto: $70
 18. Palo Selfie Tripode Bluetooth: $70
 19-22. Playeras Cristianas (dropshipping "Crea tu Playera"): $140 por unidad
+23. Miniproyector G-Tide PJ50 (Blanco/Negro): $1,489
+24. Bocina G-Tide SV41 (Verde): $359
+25. Audifonos G-Tide Future Clip (Negro): $190
+26. Cable G-Tide Tipo C a C 60W 3m (Blanco): $37
+27. Audifonos G-Tide OWS8 (Negro): $149 (sin stock actualmente, pendiente de reabastecer)
 `;
 
 const SYSTEM = `Eres el asistente de atencion al cliente de Aury Shop, tienda en Mercado Libre Mexico.
