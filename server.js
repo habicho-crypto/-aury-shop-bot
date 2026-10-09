@@ -33,14 +33,14 @@ PRODUCTOS ACTIVOS:
    Caracteristicas: Over-ear, ANC, Bluetooth
    Mayorista: 1 nivel de precio disponible
 
-7. Audifonos G-Tide C1 Lite (publicacion "Audifonos Diadema Bluetooth") - $599 (promo $329.45) | Stock: 4
+7. Audifonos G-Tide C1 Lite (publicacion "Audifonos Diadema Bluetooth") - $599 (promo $329.45) | Stock: ~24 (Negro, Azul y Violeta)
    Mismo modelo que el C1 Lite, publicado con otro titulo/foto en esta ficha
 
 8. Speaker Bluetooth G-Tide SV30 5W - $369 (promo $350.55) | Stock: 4
    Caracteristicas: Bluetooth 5.4, IPX6 resistente al agua, bateria 5 horas, USB-C, TWS, microfono integrado
 
-9. Speaker Bluetooth G-Tide SV01 5W - $269 (promo $255.55) | Stock: ~8 (varios colores)
-   Colores: Azul y Negro
+9. Speaker Bluetooth G-Tide SV01 5W - $269 (promo $255.55) | Stock: ~18 (varios colores)
+   Colores: Azul, Negro y Rojo
    Caracteristicas: Bluetooth 5.4, IPX6, soporte bicicleta/moto incluido, bateria 4 horas, USB-C, TWS
    Mayorista: 1 nivel de precio disponible
 
@@ -92,18 +92,29 @@ PRODUCTOS ACTIVOS:
 23. Miniproyector G-Tide PJ50 Android 11 4K WiFi6 Bluetooth - $2,999 (promo $2,514) | Stock: consultar | Colores: Blanco y Negro
     Caracteristicas: Proyector portatil, Android 11, resolucion 4K, WiFi6, Bluetooth
 
-    24. Bocina G-Tide SV41 Hi-Fi - $999 (promo $849.15) | Stock: consultar | Color: Verde
-        Caracteristicas: Sonido Hi-Fi, luces LED, IPX6 resistente al agua, Bluetooth
-            Mayorista: 1 nivel de precio disponible
+24. Bocina G-Tide SV41 Hi-Fi - $999 (promo $849.15) | Stock: consultar | Color: Verde
+    Caracteristicas: Sonido Hi-Fi, luces LED, IPX6 resistente al agua, Bluetooth
+    Mayorista: 1 nivel de precio disponible
 
-            25. Audifonos G-Tide Future Clip True Wireless - $349 (promo $308.43) | Stock: consultar | Color: Negro
-                Caracteristicas: True Wireless tipo clip/gancho, Bluetooth
-                    Mayorista: 1 nivel de precio disponible
+25. Audifonos G-Tide Future Clip True Wireless - $349 (promo $308.43) | Stock: consultar | Color: Negro
+    Caracteristicas: True Wireless tipo clip/gancho, Bluetooth
+    Mayorista: 1 nivel de precio disponible
 
-                    26. Cable G-Tide Tipo C a C Carga Rapida 60W 3m - $220 (promo $202.73) | Stock: consultar | Color: Blanco
+26. Cable G-Tide Tipo C a C Carga Rapida 60W 3m - $220 (promo $202.73) | Stock: consultar | Color: Blanco
 
-                    27. Audifonos G-Tide OWS8 - $369 | SIN STOCK actualmente (pendiente de reabastecer)
-                        Color: Negro
+27. Audifonos G-Tide OWS8 - $369 | SIN STOCK actualmente (pendiente de reabastecer)
+    Color: Negro
+
+28. Audifonos G-Tide L22 True Wireless - PROXIMAMENTE (precio por confirmar) | Stock: 6 | Colores: Negro y Blanco
+    Caracteristicas: In-ear con estuche de carga, Bluetooth 5.3, audifonos 30mAh + estuche 300mAh, carga en ~1 hora, codecs SBC/AAC, compatible Android e iOS
+    Incluye: audifonos, estuche de carga, cable de carga, bolsa de guardado, gomas extra (earmuffs) e instructivo
+
+29. Audifonos G-Tide EG22 Banda al Cuello (Neckband) - PROXIMAMENTE (precio por confirmar) | Stock: 3 | Color: Negro
+    Caracteristicas: Bluetooth 5.3, pantalla digital de bateria, ENC para llamadas mas claras, sonido HiFi dinamico, ranura para tarjeta TF/microSD (funciona como reproductor sin celular)
+
+30. Audifonos G-Tide AC01 Conduccion por Aire (Open-Ear) - PROXIMAMENTE (precio por confirmar) | Stock: 3 | Color: Negro
+    Caracteristicas: Oido abierto (no se introducen en el oido), Bluetooth 5.3, bateria 80mAh, carga en ~1 hora, codecs SBC/AAC, compatible Android e iOS
+    Incluye: audifonos, cable de datos e instructivo
 
 ENVIOS: Incluidos via Mercado Envios (envio gratis en la mayoria de publicaciones).
 GARANTIA: Respaldada por politicas de Mercado Libre.
@@ -121,12 +132,12 @@ const COSTOS = `
 2. Power Bank G-Tide Slim01 / Magnetico: $185
 3. Audifonos G-Tide Future Pod (Negro/Blanco): $195
 4. Audifonos G-Tide C1: $185
-4b. Audifonos G-Tide C1 Lite (Negro/Azul): $129
+4b. Audifonos G-Tide C1 Lite (Negro/Azul/Lila-Violeta): $129 (C1 Lite Negro enviado a Full: $109)
 5. Audifonos G-Tide HiBeat: $309
 6. Audifonos G-Tide Future Loop: $389
 7. Audifonos Diadema Bluetooth (publicacion #5586490726): es el mismo producto que el C1 Lite, costo $129
 8. Speaker G-Tide SV30: $179
-9. Speaker G-Tide SV01: $122
+9. Speaker G-Tide SV01 (Azul/Negro/Rojo/Gris): $122
 10. Bocina G-Tide SV80: $749
 11. Cargador GT Onyx GaN 67W (G0671 negro / G0673 blanco): $175
 12. Cargador GT Onyx GaN 33W (G0333): $68
@@ -142,6 +153,9 @@ const COSTOS = `
 25. Audifonos G-Tide Future Clip (Negro): $190
 26. Cable G-Tide Tipo C a C 60W 3m (Blanco): $37
 27. Audifonos G-Tide OWS8 (Negro): $149 (sin stock actualmente, pendiente de reabastecer)
+28. Audifonos G-Tide L22 True Wireless (Negro/Blanco): $89
+29. Audifonos G-Tide EG22 Banda al Cuello (Negro): $125
+30. Audifonos G-Tide AC01 Conduccion por Aire (Negro): $99
 `;
 
 const SYSTEM = `Eres el asistente de atencion al cliente de Aury Shop, tienda en Mercado Libre Mexico.
